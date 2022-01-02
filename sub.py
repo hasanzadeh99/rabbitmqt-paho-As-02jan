@@ -3,17 +3,13 @@ import random
 from paho.mqtt import client as mqtt_client
 
 
+broker = 'broker.emqx.io'
+port = 1883
+topic = "python/mqtt"
 # generate client ID with pub prefix randomly
-client_id = f'python-mqtt-{random.randint(0, 100)}'
-# username = 'emqx'
-# password = 'public'
-
-broker = '***'
-port = '****'
-topic = "***"
-username = "***"
-password = "***"
-
+client_id = f'python-mqtt-{random.randint(0, 1000)}'
+username = 'emqx'
+password = 'public'
 
 def connect_mqtt() -> mqtt_client:
     def on_connect(client, userdata, flags, rc):
@@ -38,7 +34,6 @@ def subscribe(client: mqtt_client):
 
 
 def run():
-    print("ali")
     client = connect_mqtt()
     subscribe(client)
     client.loop_forever()
